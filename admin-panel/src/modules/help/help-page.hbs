@@ -1,0 +1,83 @@
+<div class="container h-100">
+    <div class="row h-100 justify-content-center">
+        <div class="container-fluid">
+            <section>
+                <h6 class="section-title h1 text-center">Help</h6>
+                <div class="block-frame">
+                    <div class="row config-block delimiter">
+                        <div class="config-block-title">FAQ</div>
+                        <div class="row w-100 justify-content-center">
+                            <div class="col-12">
+                                <div class="admininstrator-info">
+                                    <div id="accordion">
+                                        <div class="card">
+                                            <div class="card-header" id="headingOne">
+                                                <h5 class="mb-0">
+                                                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne"
+                                                        aria-expanded="true" aria-controls="collapseOne">
+                                                        1) Как внести изменения в словарь/переводы?
+                                                    </button>
+                                                </h5>
+                                            </div>
+
+                                            <div id="collapseOne" class="collapse" aria-labelledby="headingOne"
+                                                data-parent="#accordion">
+                                                <div class="card-body faq-answer">
+                                                    <ul>
+                                                        <li>Перейдите на страничку <a href="/config">настроек</a>
+                                                            вашего бота , в категории “Localization”
+                                                            экспортируйте текущий, необходимый вам словарь, откройте
+                                                            его и внесите изменения для
+                                                            необходимого ключа, после чего импортируйте измененный вами
+                                                            файл обратно в бота.
+                                                        </li>
+                                                        <li> Особенности заполнения файла:
+                                                            <ol>
+                                                                <li>Не изменяйте и не добавляйте новые ключи.</li>
+                                                                <li>В текстах возможно использование следующих html
+                                                                    тегов:
+                                                                    <pre>
+&ltb&gtbold&lt;/b&gt;, &lt;strong&gt;bold&lt;/strong&gt
+&lti&gtitalic&lt;/i&gt;, &lt;em&gt;italic&lt;/em&gt
+&lta href="http://www.example.com/"&gt;inline URL&lt;/a&gt
+&ltcode&gtinline fixed-width code&lt;/code&gt
+&ltpre&gtpre-formatted fixed-width code block&lt;/pre&gt</pre>
+                                                                </li>
+                                                                <li>Не изменяйте и не удаляйте значение параметров в
+                                                                    двойных фигурных кавычках, таких
+                                                                    как, например - <span class="params">\{{name}}</span>,
+                                                                    в данных кавычки будут
+                                                                    подставлены соответствующие данные для фразы.</li>
+                                                                <li>Для добавления эмодзи (смайлов) используйте двойные
+                                                                    фигурные кавычки с квадратными
+                                                                    внутри и названием соответствующего эмодзи,
+                                                                    например: <span class="params">\{{[heavy_plus_sign]}}</span>
+                                                                    или
+                                                                    <span class="params">\{{[ok_hand]}}</span>.
+                                                                    Названия для соответствующих эмодзи
+                                                                    можно узнать через web версию Telegram, наведя на
+                                                                    на них мышкой.
+                                                                    <img src="/img/help/emoji.jpg" alt="">
+                                                                </li>
+                                                                <li>Ключи в тройных фигурных скобках (<span class="params">\{{{SOME_KEY}}}</span>)
+                                                                    используются для подставления соответствующих фраз
+                                                                    в данную.</li>
+                                                                <li>На некоторые кнопки действует ограничение длины
+                                                                    фразы, всегда проверяйте кнопки
+                                                                    на работоспособность после изменения фразы для них.</li>
+                                                            </ol>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>

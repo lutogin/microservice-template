@@ -1,0 +1,130 @@
+version: '3.4'
+
+networks:
+  backend-network:
+    driver: bridge
+  traefik:
+    driver: overlay
+    external: true
+
+volumes:
+  pgdata:
+  nodemodules:
+    external: true
+
+services:
+
+  &DB db:
+    image: postgres:11.2-alpine
+    restart: always
+    env_file:
+      - api/.env
+    # environment:
+    #   POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    #   POSTGRES_USER: ${POSTGRES_USER} 
+    #   POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - backend-network
+    labels:
+      - traefik.docker.network=traefik
+      - traefik.port=5432
+      - traefik.enable=true
+      - traefik.frontend.rule=Host:db.dev.localhost
+    networks:
+      - backend-network
+      - traefik
+    
+  adminer:
+    image: adminer
+    restart: always
+    # ports:
+    #   - 3002:8080
+    depends_on:
+      - db
+    environment:
+      - ADMINER_DEFAULT_SERVER=mysql
+    labels:
+      - traefik.docker.network=traefik
+      - traefik.port=8080
+      - traefik.enable=true
+      - traefik.frontend.rule=Host:adminer.dev.localhost
+    networks:
+      - backend-network
+      - traefik
+
+
+  api: 
+    build:
+      context: ./api
+      dockerfile: Dockerfile.development
+    volumes:
+      - "./api:/app"
+      - "/app/node_modules/.cache"
+    image: burdinbogdan/api-template-development:latest
+    # ports:
+    #   - "3000:8000"
+    depends_on:
+      - db
+    restart: always
+    env_file:
+      - api/.env
+    environment: 
+      DB_URL: *DB
+    #   DB_NAME: ${DB_NAME} 
+    #   DB_USERNAME: ${DB_USERNAME} 
+    #   DB_PASSWORD: ${DB_PASSWORD} 
+    #   JWT_SECRET: ${JWT_SECRET} 
+    #   PORT: ${PORT} 
+    labels:
+      - traefik.docker.network=traefik
+      - traefik.port=8000
+      - traefik.enable=true
+      - traefik.frontend.rule=Host:api.dev.localhost
+    networks:
+      - backend-network
+      - traefik
+
+  admin-panel:
+    build:
+      context: ./admin-panel
+      dockerfile: Dockerfile.development
+    volumes:
+      - "./admin-panel:/app"
+      - "nodemodules:/app/node_modules"
+    image: burdinbogdan/admin-panel-template-development:latest
+    ports:
+      - "3000:3000"
+      - "35729:35729" # livereload port
+    depends_on:
+      - db
+      - api
+    restart: always
+    env_file:
+      - admin-panel/.env
+    environment: 
+      BASE_API_URL: "http://api:8000"
+    labels:
+      - traefik.docker.network=traefik
+      - traefik.port=3000
+      - traefik.enable=true
+      - traefik.frontend.rule=Host:admin-panel.dev.localhost
+    networks:
+      - backend-network
+      - traefik
+
+  traefik:
+    image: traefik:latest
+    command: --api --docker 
+    ports:
+      - target: 80
+        published: 80
+        protocol: tcp
+        mode: host
+      - 8080:8080
+
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - traefik

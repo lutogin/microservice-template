@@ -1,0 +1,16 @@
+*.csv
+
+*.idea
+*.log
+*.logs
+
+logs
+
+.vscode
+
+npm-debug.log
+node_modules
+/build
+/coverage
+.env
+/local

@@ -1,0 +1,6 @@
+const USER_ACCOUNT_STATUSES = {
+  ACTIVE: 1,
+  DISABLED: 2,
+};
+
+export default USER_ACCOUNT_STATUSES;

@@ -1,0 +1,16 @@
+{
+  "name": "admin-panel-composer",
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "start": "docker-compose --file docker-compose.development.yml up",
+    "build": "docker-compose --file docker-compose.development.yml up --build",
+    "start:production": "docker-compose up",
+    "configure": "yarn update-hosts && yarn network && yarn volumes:create",
+    "network": "docker network create traefik",
+    "update-hosts": "node ./.dev-ops/update-hosts.js -f ./docker-compose.development.yml",
+    "volumes:create": "docker volume create nodemodules",
+    "volumes:clean": "docker container rm $(docker container ls -aq) && docker volume rm admin-panel_pgdata"
+  },
+  "dependencies": {}
+}

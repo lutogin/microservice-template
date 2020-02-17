@@ -1,0 +1,14 @@
+[
+  {
+    "user_id": 1,
+    "password_hash": "$2a$10$/zGG2nezKRBt9SJ7cDpIYuP29mL7hHuY8UZMDnPpHCYfC0D0IrfKq"
+  },
+  {
+    "user_id": 2,
+    "password_hash": "$2a$10$/zGG2nezKRBt9SJ7cDpIYuP29mL7hHuY8UZMDnPpHCYfC0D0IrfKq"
+  },
+  {
+    "user_id": 3,
+    "password_hash": "$2a$10$/zGG2nezKRBt9SJ7cDpIYuP29mL7hHuY8UZMDnPpHCYfC0D0IrfKq"
+  }
+]

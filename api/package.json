@@ -1,0 +1,92 @@
+{
+  "name": "frontend-test-server",
+  "version": "0.0.1",
+  "description": "API for frontend test task",
+  "main": "./build/main.js",
+  "author": "Burdin Bogdan <burdinbogdan@gmail.com> (https://github.com/burdinbogdan)",
+  "license": "MIT",
+  "engines": {
+    "node": "10.15",
+    "npm": "6.4.3",
+    "yarn": "1.13"
+  },
+  "scripts": {
+    "start": "yarn start:development",
+    "start:development": "bnr start:development",
+    "start:production": "bnr start:production",
+    "build": "yarn backpack build",
+    "lint": "eslint ./src",
+    "lint:fix": "eslint ./src --fix",
+    "prettier": "prettier --write",
+    "prettier:all": "prettier \"**/*.js\" --write",
+    "migration:generate": "sequelize migration:generate",
+    "migrate": "sequelize db:migrate",
+    "migrate:undo": "sequelize db:migrate:undo",
+    "encrypt-password-sha256": "node ./src/utils/generate-password-hash.js",
+    "encrypt-password-db": "node ./src/utils/generate-password-hash-db.js"
+  },
+  "betterScripts": {
+    "start:development": {
+      "command": "yarn migrate && yarn backpack",
+      "env": {
+        "NODE_ENV": "development"
+      }
+    },
+    "start:production": {
+      "command": "yarn migrate && yarn build && node ./build/main.js",
+      "env": {
+        "NODE_ENV": "production"
+      }
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "yarn prettier",
+      "yarn lint:fix",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "dependencies": {
+    "bcryptjs": "2.4.3",
+    "better-npm-run": "0.1.1",
+    "body-parser": "1.18.3",
+    "crypto": "1.0.1",
+    "dotenv-safe": "6.1.0",
+    "express": "4.16.4",
+    "http-status-codes": "1.3.0",
+    "joi": "14.0.6",
+    "jsonwebtoken": "8.3.0",
+    "method-override": "3.0.0",
+    "moment": "2.22.2",
+    "morgan": "1.9.1",
+    "passport": "0.4.0",
+    "passport-local": "1.0.0",
+    "pg": "7.6.1",
+    "ramda": "0.25.0",
+    "ramda-adjunct": "2.11.0",
+    "sequelize": "5.0.0-beta.13",
+    "winston": "3.1.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "10.0.1",
+    "babel-preset-es2015": "6.24.1",
+    "backpack-core": "0.8.2",
+    "eslint": "5.9.0",
+    "eslint-config-airbnb": "17.1.0",
+    "eslint-config-prettier": "3.3.0",
+    "eslint-import-resolver-webpack": "0.10.1",
+    "eslint-plugin-import": "2.14.0",
+    "eslint-plugin-jsx-a11y": "6.1.2",
+    "eslint-plugin-prettier": "3.0.0",
+    "husky": "1.1.3",
+    "lint-staged": "8.0.4",
+    "npm-check-updates": "2.14.2",
+    "prettier": "1.15.2",
+    "sequelize-cli": "5.3.0"
+  }
+}

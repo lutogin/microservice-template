@@ -1,0 +1,7 @@
+**/src/public/js/**
+**/src/public/admin/**
+**/.kernel/**
+**/node_modules/**
+build
+.vscode
+.examples

@@ -1,0 +1,96 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <h1>
+    Admins
+    <small>admin panel administrators</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+    <li class="active">Admins</li>
+  </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+  <div class="row">
+
+    <div class="col-md-11">
+      <div class="box">
+        <div class="box-header with-border">
+          <h3 class="box-title">Admins info</h3>
+          <a class="pull-right" href="/admins/create">
+            <button class="btn btn-success"><li class="fa fa-user-plus"></li></button>
+          </a>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+          <table class="table table-bordered">
+            <tr>
+              <th style="width: 10px">ID</th>
+              <th>Email</th>
+              <th>First name</th>
+              <th>Last name</th>
+              <th>Phone number</th>
+              <th>Gender</th>
+              <th>Age</th>
+              <th>Role</th>
+              <th>Account status</th>
+              <th>Registred</th>
+              <th>Updated</th>
+              <th class="text-center">Edit</th>
+              <th class="text-center">Delete</th>
+              {{!-- <th style="width: 40px">Label</th> --}}
+            </tr>
+            {{#each users}}
+            <tr>
+              <td>{{id}}</td>
+              <td>{{email}}</td>
+              <th>{{firstName}}</th>
+              <th>{{lastName}}</th>
+              <th>{{phoneNumber}}</th>
+              <th>{{gender}}</th>
+              <th>{{age}}</th>
+              <th><span class="badge bg-{{getRoleColor role}}">{{role}}</span></th>
+              <th><span class="badge bg-{{getAccountStatusColor accountStatus}}">{{getAccountStatus accountStatus}}</span></th>
+              <th>{{dateFormat createdAt "Y MMMM D, hh:mm"}}</th>
+              <th>{{dateFormat updatedAt "Y MMMM D, hh:mm"}}</th>
+              <th class="text-center"><a href="/admins/{{id}}"><button type="button" class="btn btn-xs btn-warning"><i class="text-center fa fa-edit"></i></button></a></th>
+              <th class="text-center">
+                
+                
+
+                <form action="/admins/{{id}}/delete" class="form-horizontal {{#if message}}has-error{{/if}}" method="POST" onsubmit="return confirm('Are you shure?')">
+                  <div>
+                    <div class="col-sm-offset-2 col-sm-10">
+                      <button type="submit" class="btn btn-xs btn-danger"><i class="text-center fa fa-remove"></i></button>
+                    </div>
+                  </div>
+                </form>  
+                
+              </th>
+              {{!-- <td>
+                <div class="progress progress-xs">
+                  <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
+                </div>
+              </td>
+              <td><span class="badge bg-red">55%</span></td> --}}
+            </tr>
+            {{/each}}
+          </table>
+        </div>
+        <!-- /.box-body -->
+        <div class="box-footer clearfix">
+          <ul class="pagination pagination-sm no-margin pull-right">
+            <li><a href="#">&laquo;</a></li>
+            <li><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">&raquo;</a></li>
+          </ul>
+        </div>
+      </div>
+      <!-- /.box -->
+    </div>
+  </div>
+</section>
+<!-- /.content -->

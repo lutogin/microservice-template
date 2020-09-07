@@ -72,7 +72,7 @@
     "express": "4.16.4",
     "express-handlebars": "3.0.2",
     "express-session": "^1.15.6",
-    "handlebars": "4.1.1",
+    "handlebars": "4.5.3",
     "handlebars-dateformat": "1.1.1",
     "handlebars-helpers": "0.10.0",
     "handlebars-intl": "1.1.2",

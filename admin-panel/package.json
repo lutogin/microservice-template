@@ -60,7 +60,7 @@
     "@logger": "git+https://my-work-token:WvSDTFfcidGLj2xzh5xG@gitlab.com/burdinbogdan/modules-logger.git#v0.0.3",
     "@sentry/node": "4.6.5",
     "agenda": "2.0.2",
-    "axios": "0.18.0",
+    "axios": "0.21.1",
     "bcryptjs": "2.4.3",
     "better-npm-run": "0.1.1",
     "body-parser": "1.18.3",
